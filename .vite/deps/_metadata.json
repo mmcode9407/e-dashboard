@@ -1,0 +1,29 @@
+{
+  "hash": "e6274b11",
+  "browserHash": "1b7ab324",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "180c1f1c",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "e8f0a4d6",
+      "needsInterop": true
+    },
+    "nerdux-ui-system": {
+      "src": "../../node_modules/nerdux-ui-system/dist/index.js",
+      "file": "nerdux-ui-system.js",
+      "fileHash": "7cfdc24c",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-QSQYAWSL": {
+      "file": "chunk-QSQYAWSL.js"
+    }
+  }
+}
