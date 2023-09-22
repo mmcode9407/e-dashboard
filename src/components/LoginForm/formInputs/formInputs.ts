@@ -1,4 +1,4 @@
-﻿export interface ILoginInputs {
+﻿export interface IFormInputs {
    id: string;
    label: string;
    name: InputName;
@@ -14,7 +14,7 @@ enum InputName {
    PASSWORD = 'password',
 }
 
-const loginInputs: ILoginInputs[] = [
+export const loginInputs: IFormInputs[] = [
    {
       id: 'email',
       label: 'Email',
@@ -34,5 +34,3 @@ const loginInputs: ILoginInputs[] = [
       required: true,
    },
 ];
-
-export default loginInputs;

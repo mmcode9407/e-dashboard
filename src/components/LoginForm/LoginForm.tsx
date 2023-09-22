@@ -3,7 +3,7 @@ import { TextField, Button } from 'nerdux-ui-system';
 import { useFormik } from 'formik';
 
 import styles from './LoginForm.module.scss';
-import loginFormInputs from 'data/loginFormInputs/loginFormInputs';
+import { loginInputs } from 'components/LoginForm/formInputs/formInputs';
 import validateForm from 'utils/validateForm/validateForm';
 
 export interface IFormValues {
@@ -19,7 +19,7 @@ export const LoginForm = () => {
             password: '',
          },
          validate: (values) => {
-            return validateForm(values, loginFormInputs);
+            return validateForm(values, loginInputs);
          },
          onSubmit: (values, actions) => {
             console.log(values);
@@ -30,7 +30,7 @@ export const LoginForm = () => {
    return (
       <form className={styles.loginForm} onSubmit={handleSubmit}>
          <div className={styles.loginForm__inputBox}>
-            {loginFormInputs.map(({ id, label, name, placeholder, type }) => (
+            {loginInputs.map(({ id, label, name, placeholder, type }) => (
                <TextField
                   key={id}
                   error={touched[name] ? errors[name] : ''}

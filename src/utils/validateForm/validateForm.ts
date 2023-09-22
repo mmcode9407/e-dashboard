@@ -1,7 +1,7 @@
 ﻿import { IFormValues } from 'components/LoginForm/LoginForm';
-import { ILoginInputs } from 'data/loginFormInputs/loginFormInputs';
+import { IFormInputs } from 'components/LoginForm/formInputs/formInputs';
 
-const validateForm = (values: IFormValues, fields: ILoginInputs[]) => {
+const validateForm = (values: IFormValues, fields: IFormInputs[]) => {
    const errors: Partial<IFormValues> = {};
 
    fields.forEach((field) => {
