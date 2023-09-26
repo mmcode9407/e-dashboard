@@ -1,10 +1,14 @@
-﻿import React from 'react';
+﻿import React, { useState } from 'react';
 import { TextField, Button } from 'nerdux-ui-system';
 import { useFormik } from 'formik';
+import { useSignIn } from 'react-auth-kit';
 
-import styles from './LoginForm.module.scss';
 import { loginInputs } from 'components/LoginForm/formInputs/formInputs';
 import validateForm from 'utils/validateForm/validateForm';
+import { login } from 'api/service';
+
+import styles from './LoginForm.module.scss';
+import { getErrorMessage } from 'utils/getRespError/getRespError';
 
 export interface IFormValues {
    email: string;
@@ -12,6 +16,9 @@ export interface IFormValues {
 }
 
 export const LoginForm = () => {
+   const signIn = useSignIn();
+   const [isLoading, setIsLoading] = useState<boolean>(false);
+   const [loginError, setLoginError] = useState<string | null>(null);
    const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
       useFormik<IFormValues>({
          initialValues: {
@@ -21,9 +28,28 @@ export const LoginForm = () => {
          validate: (values) => {
             return validateForm(values, loginInputs);
          },
-         onSubmit: (values, actions) => {
-            console.log(values);
-            actions.resetForm();
+         onSubmit: async (values, actions) => {
+            setIsLoading(true);
+            try {
+               const resp = await login(values);
+
+               signIn({
+                  token: resp.token,
+                  expiresIn: 10,
+                  tokenType: 'Bearer',
+                  authState: { email: values.email },
+               });
+               setLoginError(null);
+               actions.resetForm();
+            } catch (err) {
+               if (getErrorMessage(err) === '401') {
+                  setLoginError('Invalid email or password');
+               } else {
+                  console.log(getErrorMessage(err));
+               }
+            } finally {
+               setIsLoading(false);
+            }
          },
       });
 
@@ -46,10 +72,15 @@ export const LoginForm = () => {
             ))}
          </div>
          <div className={styles.loginForm__buttonBox}>
-            <Button onClick={function noRefCheck() {}} type="submit" variant="primary">
+            <Button onClick={() => {}} isLoading={isLoading} type="submit" variant="primary">
                Login
             </Button>
          </div>
+         {loginError && (
+            <div className={styles.loginForm__error}>
+               <p>{loginError}</p>
+            </div>
+         )}
       </form>
    );
 };

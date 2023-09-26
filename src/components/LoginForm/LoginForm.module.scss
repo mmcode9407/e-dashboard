@@ -24,4 +24,8 @@
          cursor: pointer;
       }
    }
+
+   &__error {
+      color: var(--magenta);
+   }
 }
