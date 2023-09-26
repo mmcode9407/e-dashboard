@@ -1,21 +1,14 @@
 ﻿import { IFormValues } from 'components/LoginForm/LoginForm';
+import { getRespError } from 'utils/getRespError/getRespError';
 
 const API_LINK: string = 'https://training.nerdbord.io/api/v1/auth';
-
-interface IFetchOptions {
-   method: 'POST';
-   body?: string;
-   headers?: {
-      'Content-Type': 'application/json';
-   };
-}
 
 type loginResponse = {
    token: string;
 };
 
 export const login = (data: IFormValues): Promise<loginResponse> => {
-   const options: IFetchOptions = {
+   const options: RequestInit = {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -23,19 +16,24 @@ export const login = (data: IFormValues): Promise<loginResponse> => {
       },
    };
 
-   return _fetchData(options, '/login');
+   return _fetchData<loginResponse>(options, '/login');
 };
 
-const _fetchData = async (options: IFetchOptions, additionalPath = '') => {
+const _fetchData = async <T>(options?: RequestInit, additionalPath?: string): Promise<T> => {
    const API_URL = `${API_LINK}${additionalPath}`;
 
-   const resp = await fetch(API_URL, options);
+   try {
+      const resp = await fetch(API_URL, options);
 
-   if (resp.ok) {
-      return resp.json();
-   }
+      if (resp.status >= 400) {
+         const errData = await resp.json();
+         throw new Error(errData.message);
+      }
 
-   if (resp.status === 401) {
-      throw new Error(resp.status.toString());
+      const data: T = await resp.json();
+      return data;
+   } catch (error) {
+      const errMsg = getRespError(error);
+      throw new Error(`Failed to fetch data: ${errMsg}`);
    }
 };

@@ -8,7 +8,7 @@ import validateForm from 'utils/validateForm/validateForm';
 import { login } from 'api/service';
 
 import styles from './LoginForm.module.scss';
-import { getErrorMessage } from 'utils/getRespError/getRespError';
+import { getRespError } from 'utils/getRespError/getRespError';
 
 export interface IFormValues {
    email: string;
@@ -31,22 +31,20 @@ export const LoginForm = () => {
          onSubmit: async (values, actions) => {
             setIsLoading(true);
             try {
-               const resp = await login(values);
+               const data = await login(values);
 
                signIn({
-                  token: resp.token,
+                  token: data.token,
                   expiresIn: 10,
                   tokenType: 'Bearer',
                   authState: { email: values.email },
                });
+
                setLoginError(null);
                actions.resetForm();
             } catch (err) {
-               if (getErrorMessage(err) === '401') {
-                  setLoginError('Invalid email or password');
-               } else {
-                  console.log(getErrorMessage(err));
-               }
+               const errMsg = getRespError(err);
+               setLoginError(errMsg);
             } finally {
                setIsLoading(false);
             }
