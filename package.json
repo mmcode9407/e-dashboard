@@ -13,6 +13,7 @@
     "formik": "^2.4.5",
     "nerdux-ui-system": "^0.2.2",
     "react": "^18.2.0",
+    "react-auth-kit": "^2.12.7",
     "react-dom": "^18.2.0",
     "sass": "^1.60.0"
   },
