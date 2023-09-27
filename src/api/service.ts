@@ -3,11 +3,11 @@ import { getRespError } from 'utils/getRespError/getRespError';
 
 const API_LINK: string = 'https://training.nerdbord.io/api/v1/auth';
 
-type loginResponse = {
+type LoginResponse = {
    token: string;
 };
 
-export const login = (data: IFormValues): Promise<loginResponse> => {
+export const login = (data: IFormValues): Promise<LoginResponse> => {
    const options: RequestInit = {
       method: 'POST',
       body: JSON.stringify(data),
@@ -16,7 +16,7 @@ export const login = (data: IFormValues): Promise<loginResponse> => {
       },
    };
 
-   return _fetchData<loginResponse>(options, '/login');
+   return _fetchData<LoginResponse>(options, '/login');
 };
 
 const _fetchData = async <T>(options?: RequestInit, additionalPath?: string): Promise<T> => {
