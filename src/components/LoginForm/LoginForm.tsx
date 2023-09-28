@@ -2,13 +2,14 @@
 import { TextField, Button } from 'nerdux-ui-system';
 import { useFormik } from 'formik';
 import { useSignIn } from 'react-auth-kit';
+import { useNavigate } from 'react-router-dom';
 
 import { loginInputs } from 'components/LoginForm/formInputs/formInputs';
 import validateForm from 'utils/validateForm/validateForm';
+import { getRespError } from 'utils/getRespError/getRespError';
 import { login } from 'api/service';
 
 import styles from './LoginForm.module.scss';
-import { getRespError } from 'utils/getRespError/getRespError';
 
 export interface IFormValues {
    email: string;
@@ -17,6 +18,7 @@ export interface IFormValues {
 
 export const LoginForm = () => {
    const signIn = useSignIn();
+   const navigate = useNavigate();
    const [isLoading, setIsLoading] = useState<boolean>(false);
    const [loginError, setLoginError] = useState<string | null>(null);
    const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
@@ -42,6 +44,7 @@ export const LoginForm = () => {
 
                setLoginError(null);
                actions.resetForm();
+               navigate('/dashboard');
             } catch (err) {
                const errMsg = getRespError(err);
                setLoginError(errMsg);
