@@ -1,7 +1,16 @@
 import React from 'react';
 import { Container } from '../components/Container/Container';
 import styles from './Leads.module.scss';
+import { useAppSelector } from 'store/hooks';
+import { selectEmail } from 'features/user/userSlice';
 
 export const Leads = () => {
-   return <Container>Leads view</Container>;
+   const userState = useAppSelector((state) => state);
+   const userEmail = selectEmail(userState);
+
+   return (
+      <Container>
+         Leads view <h2>{userEmail}</h2>
+      </Container>
+   );
 };
