@@ -7,9 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import { loginInputs } from 'components/LoginForm/formInputs/formInputs';
 import validateForm from 'utils/validateForm/validateForm';
 import { getRespError } from 'utils/getRespError/getRespError';
-import { getUser, login } from 'api/service';
+import { login } from 'api/service';
 import { useAppDispatch } from 'store/hooks';
-import { setUser } from 'features/user/userSlice';
+import { fetchUserByToken } from 'features/user/userSlice';
 
 import styles from './LoginForm.module.scss';
 
@@ -38,8 +38,7 @@ export const LoginForm = () => {
 
             try {
                const { token } = await login(values);
-               const { user } = await getUser(token);
-               dispatch(setUser(user));
+               await dispatch(fetchUserByToken(token)).unwrap();
 
                signIn({
                   token: token,
