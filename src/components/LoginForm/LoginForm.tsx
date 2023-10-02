@@ -9,7 +9,7 @@ import validateForm from 'utils/validateForm/validateForm';
 import { getRespError } from 'utils/getRespError/getRespError';
 import { login } from 'api/service';
 import { useAppDispatch } from 'store/hooks';
-import { fetchUserByToken } from 'features/user/userSlice';
+import { fetchUserByToken } from 'data/user/slice';
 
 import styles from './LoginForm.module.scss';
 

@@ -1,5 +1,5 @@
 ﻿import { configureStore } from '@reduxjs/toolkit';
-import userReducer from '../features/user/userSlice';
+import userReducer from '../data/user/slice';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist';

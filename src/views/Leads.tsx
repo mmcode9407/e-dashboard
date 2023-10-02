@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from '../components/Container/Container';
 import styles from './Leads.module.scss';
 import { useAppSelector } from 'store/hooks';
-import { selectEmail } from 'features/user/userSlice';
+import { selectEmail } from 'data/user/slice';
 
 export const Leads = () => {
    const userState = useAppSelector((state) => state);

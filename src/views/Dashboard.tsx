@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from '../components/Container/Container';
 import styles from './Dashboard.module.scss';
-import { selectEmail } from 'features/user/userSlice';
+import { selectEmail } from 'data/user/slice';
 import { useAppSelector } from 'store/hooks';
 
 export const Dashboard = () => {

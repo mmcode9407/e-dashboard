@@ -1,5 +1,5 @@
 ﻿import { IFormValues } from 'components/LoginForm/LoginForm';
-import { UserDto } from 'data/dto/User.dto';
+import { UserDto } from 'data/user/dto';
 import { getRespError } from 'utils/getRespError/getRespError';
 
 const API_LINK: string = 'https://training.nerdbord.io/api/v1/auth';

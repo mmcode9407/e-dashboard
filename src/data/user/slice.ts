@@ -1,7 +1,7 @@
 ﻿import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../store/configureStore';
-import { UserDto } from 'data/dto/User.dto';
+import { UserDto } from 'data/user/dto';
 import { getUser } from 'api/service';
 
 const initialState: UserDto = { email: '', id: '' };
