@@ -38,7 +38,7 @@ export const LoginForm = () => {
 
             try {
                const { token } = await login(values);
-               await dispatch(fetchUserByToken(token)).unwrap();
+               await dispatch(fetchUserByToken(token));
 
                signIn({
                   token: token,

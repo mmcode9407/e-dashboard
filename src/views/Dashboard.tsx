@@ -1,12 +1,11 @@
 import React from 'react';
 import { Container } from '../components/Container/Container';
 import styles from './Dashboard.module.scss';
-import { selectEmail } from 'data/user/slice';
+import { selectUserEmail } from 'data/user/slice';
 import { useAppSelector } from 'store/hooks';
 
 export const Dashboard = () => {
-   const userState = useAppSelector((state) => state);
-   const userEmail = selectEmail(userState);
+   const userEmail = useAppSelector(selectUserEmail);
    return (
       <Container>
          Dashboard view

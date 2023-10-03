@@ -4,34 +4,30 @@ import type { RootState } from '../../store/configureStore';
 import { UserDto } from 'data/user/dto';
 import { getUser } from 'api/service';
 
-const initialState: UserDto = { email: '', id: '' };
+const initialState: UserDto = { email: null, id: null };
 
-export const fetchUserByToken = createAsyncThunk(
-   'user/fetchUserByToken',
-   async (token: string, { dispatch }) => {
-      const { user } = await getUser(token);
+export const fetchUserByToken = createAsyncThunk('user/fetchUserByToken', async (token: string) => {
+   const { user } = await getUser(token);
 
-      dispatch(setUser(user));
-   },
-);
+   return user;
+});
 
 export const userSlice = createSlice({
    name: 'user',
    initialState,
-   reducers: {
-      setUser: (state, action: PayloadAction<UserDto>) => {
+   reducers: {},
+   extraReducers: (builder) => {
+      builder.addCase(fetchUserByToken.fulfilled, (state, action: PayloadAction<UserDto>) => {
          state.email = action.payload.email;
          state.id = action.payload.id;
-      },
-      deleteUser: (state) => {
-         state = initialState;
-      },
+      });
+      builder.addCase(fetchUserByToken.rejected, (state, action) => {
+         throw new Error(action.error.message);
+      });
    },
 });
 
-export const { setUser, deleteUser } = userSlice.actions;
-
-export const selectEmail = (state: RootState) =>
-   state.user.email.length > 0 ? state.user.email : 'unknown';
+export const selectUserEmail = (state: RootState) =>
+   state.user.email ? state.user.email : 'unknown';
 
 export default userSlice.reducer;
