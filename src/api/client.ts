@@ -1,5 +1,5 @@
-import { LeadDto } from '../data/dto/Lead.dto';
-import { UserDto } from '../data/dto/User.dto';
+import { LeadDto } from '../data/leads/dto';
+import { UserDto } from '../data/user/dto';
 
 abstract class Client {
    abstract async findManyLeads(params: { take: number }): Promise<LeadDto[]>;

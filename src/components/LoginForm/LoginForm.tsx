@@ -2,13 +2,16 @@
 import { TextField, Button } from 'nerdux-ui-system';
 import { useFormik } from 'formik';
 import { useSignIn } from 'react-auth-kit';
+import { useNavigate } from 'react-router-dom';
 
 import { loginInputs } from 'components/LoginForm/formInputs/formInputs';
 import validateForm from 'utils/validateForm/validateForm';
+import { getRespError } from 'utils/getRespError/getRespError';
 import { login } from 'api/service';
+import { useAppDispatch } from 'store/hooks';
+import { fetchUserByToken } from 'data/user/slice';
 
 import styles from './LoginForm.module.scss';
-import { getRespError } from 'utils/getRespError/getRespError';
 
 export interface IFormValues {
    email: string;
@@ -16,25 +19,29 @@ export interface IFormValues {
 }
 
 export const LoginForm = () => {
+   const dispatch = useAppDispatch();
    const signIn = useSignIn();
+   const navigate = useNavigate();
    const [isLoading, setIsLoading] = useState<boolean>(false);
    const [loginError, setLoginError] = useState<string | null>(null);
    const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
       useFormik<IFormValues>({
          initialValues: {
-            email: '',
-            password: '',
+            email: 'dev@nerdbord.io',
+            password: 'catsanddogs',
          },
          validate: (values) => {
             return validateForm(values, loginInputs);
          },
          onSubmit: async (values, actions) => {
             setIsLoading(true);
+
             try {
-               const data = await login(values);
+               const { token } = await login(values);
+               await dispatch(fetchUserByToken(token));
 
                signIn({
-                  token: data.token,
+                  token: token,
                   expiresIn: 10,
                   tokenType: 'Bearer',
                   authState: { email: values.email },
@@ -42,6 +49,7 @@ export const LoginForm = () => {
 
                setLoginError(null);
                actions.resetForm();
+               navigate('/dashboard');
             } catch (err) {
                const errMsg = getRespError(err);
                setLoginError(errMsg);
