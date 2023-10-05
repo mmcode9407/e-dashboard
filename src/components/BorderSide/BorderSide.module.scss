@@ -1,4 +1,14 @@
 ﻿.image {
+   position: absolute;
+   top: 0;
    height: 100vh;
    z-index: 10;
+}
+
+.left {
+   left: 0;
+}
+
+.right {
+   right: 0;
 }

@@ -12,7 +12,7 @@ export const Login = () => {
    return (
       <main>
          <Container>
-            <BorderSide src={borderLeft} alt="Left border graphic" />
+            <BorderSide src={borderLeft} alt="Left border graphic" position="left" />
             <div className={styles.wrapper}>
                <header className={styles.header}>
                   <h1 className={styles.header__title}>Welcome back</h1>
@@ -20,7 +20,7 @@ export const Login = () => {
                </header>
                <LoginForm />
             </div>
-            <BorderSide src={welcomeImg} alt="Right border graphic" />
+            <BorderSide src={welcomeImg} alt="Right border graphic" position="right" />
          </Container>
       </main>
    );

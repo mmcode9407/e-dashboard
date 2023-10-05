@@ -10,6 +10,7 @@ import { getRespError } from 'utils/getRespError/getRespError';
 import { login } from 'api/service';
 import { useAppDispatch } from 'store/hooks';
 import { fetchUserByToken } from 'data/user/slice';
+import { Paths } from 'App';
 
 import styles from './LoginForm.module.scss';
 
@@ -49,7 +50,7 @@ export const LoginForm = () => {
 
                setLoginError(null);
                actions.resetForm();
-               navigate('/dashboard');
+               navigate(Paths.DASHBOARD);
             } catch (err) {
                const errMsg = getRespError(err);
                setLoginError(errMsg);

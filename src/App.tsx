@@ -4,8 +4,9 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Dashboard } from 'views/Dashboard';
 import { Leads } from 'views/Leads';
 import { RequireAuth, useIsAuthenticated } from 'react-auth-kit';
+import { Layout } from 'views/Layout';
 
-enum Paths {
+export enum Paths {
    HOME = '/',
    LOGIN = '/login',
    DASHBOARD = '/dashboard',
@@ -22,22 +23,24 @@ function App() {
             path={Paths.LOGIN}
             element={!isAuthenticated() ? <Login /> : <Navigate to={Paths.DASHBOARD} />}
          />
-         <Route
-            path={Paths.DASHBOARD}
-            element={
-               <RequireAuth loginPath={Paths.LOGIN}>
-                  <Dashboard />
-               </RequireAuth>
-            }
-         />
-         <Route
-            path={Paths.LEADS}
-            element={
-               <RequireAuth loginPath={Paths.LOGIN}>
-                  <Leads />
-               </RequireAuth>
-            }
-         />
+         <Route element={<Layout />}>
+            <Route
+               path={Paths.DASHBOARD}
+               element={
+                  <RequireAuth loginPath={Paths.LOGIN}>
+                     <Dashboard />
+                  </RequireAuth>
+               }
+            />
+            <Route
+               path={Paths.LEADS}
+               element={
+                  <RequireAuth loginPath={Paths.LOGIN}>
+                     <Leads />
+                  </RequireAuth>
+               }
+            />
+         </Route>
       </Routes>
    );
 }

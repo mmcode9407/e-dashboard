@@ -2,7 +2,17 @@
 import userReducer from '../data/user/slice';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
-import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist';
+import {
+   FLUSH,
+   PAUSE,
+   PERSIST,
+   PURGE,
+   REGISTER,
+   REHYDRATE,
+   persistReducer,
+   persistStore,
+   Persistor,
+} from 'redux-persist';
 
 const reducers = combineReducers({
    user: userReducer,
@@ -28,3 +38,5 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export const persistor: Persistor = persistStore(store);
