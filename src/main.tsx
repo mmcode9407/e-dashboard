@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { AuthProvider } from 'react-auth-kit';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import App from './App';
@@ -18,9 +18,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                cookieDomain={window.location.hostname}
                cookieSecure={true}
             >
-               <BrowserRouter>
+               <Router>
                   <App />
-               </BrowserRouter>
+               </Router>
             </AuthProvider>
          </PersistGate>
       </Provider>
