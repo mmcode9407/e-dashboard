@@ -1,3 +1,67 @@
 .wrapper {
+   padding: 27px 0;
+}
 
+.title {
+   font-size: 28px;
+   font-weight: 400;
+   line-height: 36px;
+   color: var(--black);
+}
+
+.contentBox {
+   display: flex;
+   gap: 24px;
+   margin-top: 40px;
+}
+
+.leadsList {
+   width: 360px;
+
+   .leadsListTitle {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 28px;
+
+      .period {
+         font-size: 14px;
+         font-weight: 500;
+         color: var(--neutral-50);
+      }
+   }
+
+   .list {
+      margin-top: 12px;
+
+      .lead {
+         padding: 8px 24px 8px 16px;
+         border: 1px solid var(--neutral-90);
+
+         .leadName {
+            font-size: 16px;
+            font-weight: 500;
+         }
+
+         .leadTime {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--neutral-50);
+         }
+      }
+   }
+
+   .loadMoreBtn {
+      padding: 10px 12px;
+      color: var(--magenta);
+      background: none;
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+         text-decoration: underline;
+      }
+   }
 }
