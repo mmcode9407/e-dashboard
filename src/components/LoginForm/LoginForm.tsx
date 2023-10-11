@@ -10,7 +10,7 @@ import { getRespError } from 'utils/getRespError/getRespError';
 import { login } from 'api/service';
 import { useAppDispatch } from 'store/hooks';
 import { fetchUserByToken } from 'data/user/slice';
-import { Paths } from 'App';
+import { Paths } from 'data/types/types';
 
 import styles from './LoginForm.module.scss';
 

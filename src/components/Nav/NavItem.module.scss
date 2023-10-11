@@ -1,0 +1,20 @@
+﻿.navItem {
+   padding: 16px 0;
+   font-weight: 500;
+   border-bottom: 3px solid transparent;
+
+   &.active {
+      border-bottom-color: var(--magenta);
+
+      a {
+         color: var(--magenta);
+      }
+   }
+
+   a {
+      color: var(--neutral-20);
+      &:hover {
+         text-decoration: none;
+      }
+   }
+}
