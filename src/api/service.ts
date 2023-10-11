@@ -1,8 +1,9 @@
 ﻿import { IFormValues } from 'components/LoginForm/LoginForm';
+import { LeadDto } from 'data/leads/dto';
 import { UserDto } from 'data/user/dto';
 import { getRespError } from 'utils/getRespError/getRespError';
 
-const API_LINK: string = 'https://training.nerdbord.io/api/v1/auth';
+const API_LINK: string = 'https://training.nerdbord.io/api/v1';
 
 interface ILoginResponse {
    token: string;
@@ -21,7 +22,7 @@ export const login = (data: IFormValues): Promise<ILoginResponse> => {
       },
    };
 
-   return _fetchData<ILoginResponse>(options, '/login');
+   return _fetchData<ILoginResponse>(options, '/auth/login');
 };
 
 export const getUser = (token: string): Promise<IUserResp> => {
@@ -32,7 +33,18 @@ export const getUser = (token: string): Promise<IUserResp> => {
       },
    };
 
-   return _fetchData<IUserResp>(options, '/me');
+   return _fetchData<IUserResp>(options, '/auth/me');
+};
+
+export const getLeads = (token: string): Promise<LeadDto[]> => {
+   const options: RequestInit = {
+      method: 'GET',
+      headers: {
+         authorization: `Bearer ${token}`,
+      },
+   };
+
+   return _fetchData<LeadDto[]>(options, '/leads');
 };
 
 const _fetchData = async <T>(options?: RequestInit, additionalPath?: string): Promise<T> => {
