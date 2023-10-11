@@ -1,17 +1,17 @@
 ﻿import { Paths } from 'data/types/types';
 
-interface INavItems {
+interface INavItem {
    title: string;
-   url: Paths;
+   path: Paths;
 }
 
-export const navItems: INavItems[] = [
+export const navItems: INavItem[] = [
    {
       title: 'Dashboard',
-      url: Paths.DASHBOARD,
+      path: Paths.DASHBOARD,
    },
    {
       title: 'Leads',
-      url: Paths.LEADS,
+      path: Paths.LEADS,
    },
 ];

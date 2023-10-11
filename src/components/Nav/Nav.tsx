@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import { Link } from 'nerdux-ui-system';
 import { useSignOut } from 'react-auth-kit';
 import { useNavigate } from 'react-router';
 import { NavItem } from './NavItem';
@@ -24,15 +23,13 @@ export const Nav = () => {
       <nav className={`${styles.nav} ${styles.innerWrapper}`}>
          <ul className={styles.navList}>
             {navItems.map((item) => (
-               <NavItem key={item.url} path={item.url}>
+               <NavItem key={item.path} path={item.path}>
                   {item.title}
                </NavItem>
             ))}
          </ul>
          <button onClick={handleSigningOut} className={styles.logOutBtn}>
-            <Link to={''} target="_self">
-               Log out
-            </Link>
+            Log out
          </button>
       </nav>
    );
