@@ -1,0 +1,32 @@
+﻿.innerWrapper {
+   padding: 0 156px;
+}
+
+.nav {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   height: 53px;
+   background-color: var(--neutral-90);
+
+   .navList {
+      display: flex;
+      gap: 38px;
+      list-style: none;
+   }
+
+   .logOutBtn {
+      padding: 10px 12px;
+      color: var(--magenta);
+      font-weight: 500;
+      line-height: 20px;
+      font-size: 14px;
+      border: none;
+      background: none;
+      cursor: pointer;
+
+      &:hover {
+         text-decoration: underline;
+      }
+   }
+}

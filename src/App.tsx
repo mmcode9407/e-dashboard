@@ -1,17 +1,11 @@
 import React from 'react';
-import { Login } from './views/Login';
+import { RequireAuth, useIsAuthenticated } from 'react-auth-kit';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { Login } from './views/Login';
 import { Dashboard } from 'views/Dashboard';
 import { Leads } from 'views/Leads';
-import { RequireAuth, useIsAuthenticated } from 'react-auth-kit';
 import { Layout } from 'views/Layout';
-
-export enum Paths {
-   HOME = '/',
-   LOGIN = '/login',
-   DASHBOARD = '/dashboard',
-   LEADS = '/leads',
-}
+import { Paths } from 'data/types/types';
 
 function App() {
    const isAuthenticated = useIsAuthenticated();
