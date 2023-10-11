@@ -7,10 +7,13 @@ import { Paths } from 'data/types/types';
 import { persistor } from 'store/configureStore';
 
 import styles from './Nav.module.scss';
+import { useAppSelector } from 'store/hooks';
+import { selectUserEmail } from 'data/user/slice';
 
 export const Nav = () => {
    const signOut = useSignOut();
    const navigate = useNavigate();
+   const userEmail = useAppSelector(selectUserEmail);
 
    const handleSigningOut = (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
@@ -28,9 +31,14 @@ export const Nav = () => {
                </NavItem>
             ))}
          </ul>
-         <button onClick={handleSigningOut} className={styles.logOutBtn}>
-            Log out
-         </button>
+         <div className={styles.userBox}>
+            <p className={styles.logged}>
+               Logged in as: <span className={styles.userEmail}>{userEmail}</span>
+            </p>
+            <button onClick={handleSigningOut} className={styles.logOutBtn}>
+               Log out
+            </button>
+         </div>
       </nav>
    );
 };
