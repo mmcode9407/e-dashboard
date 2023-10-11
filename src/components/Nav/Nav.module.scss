@@ -15,6 +15,23 @@
       list-style: none;
    }
 
+   .userBox {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .logged {
+         font-size: 14px;
+         color: var(--neutral-20);
+
+         .userEmail {
+            margin-left: 10px;
+            font-size: 14px;
+            color: var(--neutral-40);
+         }
+      }
+   }
+
    .logOutBtn {
       padding: 10px 12px;
       color: var(--magenta);
