@@ -1,12 +1,33 @@
 import React from 'react';
 import { Container } from '../components/Container/Container';
-
-import styles from './Dashboard.module.scss';
 import { useAppSelector } from 'store/hooks';
 import { selectLeads } from 'data/leads/slice';
+import { LeadDto } from 'data/leads/dto';
+
+import styles from './Dashboard.module.scss';
+
+const initialItems: { name: string; createdAt: string }[] = [
+   { name: 'Item 1', createdAt: '2023-10-11T14:42:05.010Z' },
+   { name: 'Item 2', createdAt: '2023-10-11T14:51:19.093Z' },
+   { name: 'Item 3', createdAt: '2023-10-11T14:53:32.359Z' },
+   { name: 'Item 4', createdAt: '2023-10-11T14:11:23.864Z' },
+   { name: 'Item 5', createdAt: '2023-10-11T15:00:41.901Z' },
+   { name: 'Item 6', createdAt: '2023-10-10T10:31:38.652Z' },
+   { name: 'Item 7', createdAt: '22023-10-10T15:06:06.815Z' },
+   { name: 'Item 8', createdAt: '2023-10-09T15:05:43.478Z' },
+   { name: 'Item 9', createdAt: '2023-10-09T16:33:19.003Z' },
+   { name: 'Item 10', createdAt: '2023-10-11T16:33:06.338Z' },
+];
+
+const getLeadsFromLast24h = (leadsArr: { name: string; createdAt: string }[]) => {
+   const currDate = new Date().getTime();
+   const twentyFourHAgo = currDate - 24 * 60 * 60 * 1000;
+   return leadsArr.filter((lead) => new Date(lead.createdAt).getTime() >= twentyFourHAgo);
+};
 
 export const Dashboard = () => {
-   const leads = useAppSelector(selectLeads);
+   // const leads = useAppSelector(selectLeads);
+   const filteredLeads = getLeadsFromLast24h(initialItems);
 
    return (
       <Container>
@@ -15,10 +36,11 @@ export const Dashboard = () => {
             <div className={styles.contentBox}>
                <div className={styles.leadsList}>
                   <h2 className={styles.leadsListTitle}>
-                     Newest leads ({leads.length}) <span className={styles.period}>Last 24h</span>
+                     Newest leads ({filteredLeads.length}){' '}
+                     <span className={styles.period}>Last 24h</span>
                   </h2>
                   <ul className={styles.list}>
-                     {leads
+                     {filteredLeads
                         .slice(0, 5)
                         .sort(
                            (a, b) =>
