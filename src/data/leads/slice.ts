@@ -8,8 +8,8 @@ import { getLeads } from 'api/service';
 
 const initialState: LeadDto[] = [];
 
-export const fetchUserLeads = createAsyncThunk('leads/fetchUserLeads', async (token: string) => {
-   const leads = await getLeads(token);
+export const fetchUserLeads = createAsyncThunk('leads/fetchUserLeads', async () => {
+   const leads = await getLeads();
 
    return leads;
 });

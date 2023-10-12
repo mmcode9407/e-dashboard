@@ -36,12 +36,9 @@ export const getUser = (token: string): Promise<IUserResp> => {
    return _fetchData<IUserResp>(options, '/auth/me');
 };
 
-export const getLeads = (token: string): Promise<LeadDto[]> => {
+export const getLeads = (): Promise<LeadDto[]> => {
    const options: RequestInit = {
       method: 'GET',
-      headers: {
-         authorization: `Bearer ${token}`,
-      },
    };
 
    return _fetchData<LeadDto[]>(options, '/leads');
