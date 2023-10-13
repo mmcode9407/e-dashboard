@@ -24,6 +24,7 @@ const persistConfig = {
    key: 'root',
    version: 1,
    storage,
+   blacklist: ['leads'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
