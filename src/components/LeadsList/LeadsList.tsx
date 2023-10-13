@@ -25,8 +25,8 @@ export const LeadsList = () => {
                   .slice(0, displayedLeads)
                   .map((item) => <LeadsListItem key={item.name} {...item} />)
             ) : (
-               <li>
-                  <p>No new leads...</p>
+               <li className={styles.emptyList}>
+                  <p className={styles.emptyListText}>No new leads...</p>
                </li>
             )}
          </ul>

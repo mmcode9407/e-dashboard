@@ -35,6 +35,15 @@
          border-radius: 4px;
          background-color: var(--neutral-20);
       }
+
+      .emptyList {
+         padding: 23px 24px 23px 16px;
+         border: 1px solid var(--neutral-90);
+
+         .emptyListText {
+            color: var(--neutral-50);
+         }
+      }
    }
 
    .loadMoreBtn {
