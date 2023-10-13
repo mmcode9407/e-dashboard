@@ -10,7 +10,6 @@ import { getRespError } from 'utils/getRespError/getRespError';
 import { login } from 'api/service';
 import { useAppDispatch } from 'store/hooks';
 import { fetchUserByToken } from 'data/user/slice';
-import { fetchUserLeads } from 'data/leads/slice';
 import { Paths } from 'data/types/types';
 
 import styles from './LoginForm.module.scss';
@@ -41,7 +40,6 @@ export const LoginForm = () => {
             try {
                const { token } = await login(values);
                await dispatch(fetchUserByToken(token));
-               await dispatch(fetchUserLeads());
 
                signIn({
                   token: token,

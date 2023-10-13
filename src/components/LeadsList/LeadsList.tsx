@@ -2,12 +2,13 @@
 import { LeadsListItem } from './LeadsListItem';
 import styles from './LeadsList.module.scss';
 import { LeadDto } from 'data/leads/dto';
+import { useAppSelector } from 'store/hooks';
+import { selectLeads } from 'data/leads/slice';
+import { formatLeadsArray } from 'utils/formatLeadsArray/formatLeadsArray';
 
-interface ILeadsListProps {
-   leads: LeadDto[];
-}
-
-export const LeadsList = ({ leads }: ILeadsListProps) => {
+export const LeadsList = () => {
+   const leads = useAppSelector(selectLeads);
+   const formattedLeads = formatLeadsArray(leads);
    const [displayedLeads, setDisplayedLeads] = useState(5);
 
    const handleLoadMore = () => {
@@ -16,11 +17,11 @@ export const LeadsList = ({ leads }: ILeadsListProps) => {
    return (
       <div className={styles.leadsList}>
          <h2 className={styles.leadsListTitle}>
-            Newest leads ({leads.length}) <span className={styles.period}>Last 24h</span>
+            Newest leads ({formattedLeads.length}) <span className={styles.period}>Last 24h</span>
          </h2>
          <ul className={styles.list}>
-            {leads.length > 0 ? (
-               leads
+            {formattedLeads.length > 0 ? (
+               formattedLeads
                   .slice(0, displayedLeads)
                   .map((item) => <LeadsListItem key={item.name} {...item} />)
             ) : (
@@ -29,7 +30,7 @@ export const LeadsList = ({ leads }: ILeadsListProps) => {
                </li>
             )}
          </ul>
-         {displayedLeads < leads.length && (
+         {displayedLeads < formattedLeads.length && (
             <button className={styles.loadMoreBtn} onClick={handleLoadMore}>
                Load more
             </button>
