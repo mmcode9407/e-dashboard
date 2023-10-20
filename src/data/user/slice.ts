@@ -5,7 +5,7 @@ import { UserDto } from 'data/user/dto';
 import { getUser } from 'api/service';
 import { PURGE } from 'redux-persist';
 
-const initialState: UserDto = { email: null, id: null };
+const initialState: UserDto = { email: null, _id: null };
 
 export const fetchUserByToken = createAsyncThunk('user/fetchUserByToken', async (token: string) => {
    const { user } = await getUser(token);
@@ -20,7 +20,7 @@ export const userSlice = createSlice({
    extraReducers: (builder) => {
       builder.addCase(fetchUserByToken.fulfilled, (state, action: PayloadAction<UserDto>) => {
          state.email = action.payload.email;
-         state.id = action.payload.id;
+         state._id = action.payload._id;
       });
       builder.addCase(fetchUserByToken.rejected, (state, action) => {
          throw new Error(action.error.message);
