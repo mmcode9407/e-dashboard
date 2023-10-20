@@ -1,3 +1,16 @@
 .wrapper {
+   padding: 27px 0;
+}
 
+.title {
+   font-size: 28px;
+   font-weight: 400;
+   line-height: 36px;
+   color: var(--black);
+}
+
+.contentBox {
+   display: flex;
+   gap: 24px;
+   margin-top: 40px;
 }

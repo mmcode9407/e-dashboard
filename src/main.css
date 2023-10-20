@@ -14,6 +14,7 @@
    --white: #fff;
    --black: #000;
    --neutral-90: #e6e1e5;
+   --neutral-50: #787579;
    --neutral-40: #605d62;
    --neutral-20: #313033;
 }
@@ -25,4 +26,8 @@ html {
 body {
    height: 100vh;
    width: 100vw;
+}
+
+ul {
+   list-style-type: none;
 }

@@ -1,5 +1,6 @@
 ﻿import { configureStore } from '@reduxjs/toolkit';
 import userReducer from '../data/user/slice';
+import leadsReducer from '../data/leads/slice';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import {
@@ -16,12 +17,14 @@ import {
 
 const reducers = combineReducers({
    user: userReducer,
+   leads: leadsReducer,
 });
 
 const persistConfig = {
    key: 'root',
    version: 1,
    storage,
+   blacklist: ['leads'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

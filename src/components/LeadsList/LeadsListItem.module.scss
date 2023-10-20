@@ -1,0 +1,15 @@
+﻿.lead {
+   padding: 13px 24px 13px 16px;
+   border: 1px solid var(--neutral-90);
+
+   .leadName {
+      font-size: 16px;
+      font-weight: 500;
+   }
+
+   .leadTime {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--neutral-50);
+   }
+}
