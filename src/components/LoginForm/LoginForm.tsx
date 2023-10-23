@@ -43,7 +43,7 @@ export const LoginForm = () => {
 
                signIn({
                   token: token,
-                  expiresIn: 10,
+                  expiresIn: 3600,
                   tokenType: 'Bearer',
                   authState: { email: values.email },
                });

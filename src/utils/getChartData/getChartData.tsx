@@ -6,11 +6,11 @@ interface IChartData {
    collected: number;
 }
 
-export const getChartData = (leads: LeadDto[]): IChartData[] => {
+export const getChartData = (leads: LeadDto[], startDate: Moment): IChartData[] => {
    const data: IChartData[] = [];
 
    for (let i = 0; i <= 9; i++) {
-      const currentDay = moment().subtract(i, 'days');
+      const currentDay = moment(startDate).subtract(i, 'days');
 
       const leadsForDay = [...leads].filter((lead) => {
          return moment(lead.createdAt).isSame(currentDay, 'day');
