@@ -1,7 +1,7 @@
 ﻿import { LeadDto } from 'data/leads/dto';
 import moment, { Moment } from 'moment';
 
-interface IChartData {
+export interface IChartData {
    name: string;
    collected: number;
 }
