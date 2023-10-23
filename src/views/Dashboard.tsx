@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Container } from '../components/Container/Container';
 import { LeadsList } from 'components/LeadsList/LeadsList';
+import { LeadsChart } from 'components/LeadsStats/LeadsChart';
 import { fetchUserLeads } from 'data/leads/slice';
 import { useAppDispatch } from 'store/hooks';
 
@@ -28,10 +29,7 @@ export const Dashboard = () => {
             <h1 className={styles.title}>Dashboard</h1>
             <div className={styles.contentBox}>
                <LeadsList />
-               <div>
-                  <h2>Leads throughout time</h2>
-                  <div></div>
-               </div>
+               <LeadsChart />
             </div>
          </div>
       </Container>

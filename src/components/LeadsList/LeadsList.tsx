@@ -8,7 +8,7 @@ import { formatLeadsArray } from 'utils/formatLeadsArray/formatLeadsArray';
 
 export const LeadsList = () => {
    const leads = useAppSelector(selectLeads);
-   const formattedLeads = formatLeadsArray(leads);
+   const formattedLeads: LeadDto[] = formatLeadsArray(leads);
    const [displayedLeads, setDisplayedLeads] = useState(5);
 
    const handleLoadMore = () => {

@@ -1,0 +1,21 @@
+﻿.chart {
+   flex-grow: 1;
+
+   .headerBox {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-right: 60px;
+
+      .chartTitle {
+         font-size: 22px;
+         font-weight: 400;
+         line-height: 28px;
+      }
+
+      .buttonsBox {
+         display: flex;
+         gap: 10px;
+      }
+   }
+}
