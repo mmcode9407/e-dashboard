@@ -1,11 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Container } from '../components/Container/Container';
 
 import styles from './Leads.module.scss';
 import {
+   SortingState,
    createColumnHelper,
    flexRender,
    getCoreRowModel,
+   getSortedRowModel,
    useReactTable,
 } from '@tanstack/react-table';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
@@ -13,6 +15,7 @@ import { fetchUserLeads, selectLeads } from 'data/leads/slice';
 import { Table, TableHead, TableBody, TableRow, TableCell } from 'nerdux-ui-system';
 import { LeadDto } from 'data/leads/dto';
 import { formatDateForTable } from 'utils/formatDate/formatDate';
+import { DropdownIcon, DropupIcon } from 'components/Icons/Icons';
 
 const columnHelper = createColumnHelper<Partial<LeadDto>>();
 const columns = [
@@ -39,13 +42,18 @@ const columns = [
 
 export const Leads = () => {
    const leads = useAppSelector(selectLeads);
+   const dispatch = useAppDispatch();
+   const initialized = useRef(false);
+   const [sorting, setSorting] = useState<SortingState>([]);
+
    const table = useReactTable({
       data: leads,
       columns,
+      state: { sorting },
+      onSortingChange: setSorting,
       getCoreRowModel: getCoreRowModel(),
+      getSortedRowModel: getSortedRowModel(),
    });
-   const dispatch = useAppDispatch();
-   const initialized = useRef(false);
 
    useEffect(() => {
       if (!initialized.current) {
@@ -70,12 +78,25 @@ export const Leads = () => {
                         <TableRow key={headerGroup.id}>
                            {headerGroup.headers.map((header) => (
                               <TableCell key={header.id} align="center">
-                                 {header.isPlaceholder
-                                    ? null
-                                    : flexRender(
-                                         header.column.columnDef.header,
-                                         header.getContext(),
-                                      )}
+                                 {header.isPlaceholder ? null : (
+                                    <div
+                                       {...{
+                                          className: header.column.getCanSort()
+                                             ? `${styles.sort}`
+                                             : '',
+                                          onClick: header.column.getToggleSortingHandler(),
+                                       }}
+                                    >
+                                       {flexRender(
+                                          header.column.columnDef.header,
+                                          header.getContext(),
+                                       )}
+                                       {{
+                                          asc: <DropupIcon />,
+                                          desc: <DropdownIcon />,
+                                       }[header.column.getIsSorted() as string] ?? null}
+                                    </div>
+                                 )}
                               </TableCell>
                            ))}
                         </TableRow>
