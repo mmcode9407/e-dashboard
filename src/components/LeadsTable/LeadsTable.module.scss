@@ -1,0 +1,16 @@
+﻿table {
+    width: 100%;
+    border: 1.5px solid var(--neutral-10);
+
+    td.cell {
+       width: 282px;
+    }
+
+}
+
+.sort {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    cursor: pointer;
+ }
