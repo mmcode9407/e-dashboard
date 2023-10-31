@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useMemo, useState } from 'react';
 import {
    SortingState,
    flexRender,
@@ -12,7 +12,7 @@ import { Table, TableBody, TableCell, TableHead, TableRow, TextField } from 'ner
 import { DropdownIcon, DropupIcon } from 'components/Icons/Icons';
 import { selectLeads } from 'data/leads/slice';
 import { useAppSelector } from 'store/hooks';
-import { columns } from './columns/columns';
+import { getColumns } from './columns/columns';
 
 import styles from './LeadsTable.module.scss';
 
@@ -23,6 +23,7 @@ interface LeadsTableProps {
 export const LeadsTable = ({ searchValue }: LeadsTableProps) => {
    const leads = useAppSelector(selectLeads);
    const [sorting, setSorting] = useState<SortingState>([]);
+   const columns = useMemo(() => getColumns(searchValue), [searchValue]);
 
    const table = useReactTable({
       data: leads,
