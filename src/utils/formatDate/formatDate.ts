@@ -9,3 +9,15 @@
       timeZone: 'UTC',
    });
 };
+
+export const formatDateForTable = (date: Date) => {
+   const newDate = new Date(date);
+
+   const day = formatText(newDate.getDate());
+   const month = formatText(newDate.getMonth() + 1);
+   const year = newDate.getFullYear();
+
+   return `${day}/${month}/${year}`;
+};
+
+const formatText = (unit: number) => (`0${unit}`.length > 2 ? unit : `0${unit}`);

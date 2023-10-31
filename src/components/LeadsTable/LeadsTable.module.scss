@@ -1,0 +1,19 @@
+﻿table {
+   width: 100%;
+   border: 1.5px solid var(--neutral-10);
+
+   tr {
+      justify-content: space-between;
+   }
+
+   td {
+      align-items: center;
+   }
+}
+
+.sort {
+   display: flex;
+   align-items: center;
+   height: 24px;
+   cursor: pointer;
+}

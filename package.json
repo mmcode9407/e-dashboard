@@ -11,6 +11,7 @@
    },
    "dependencies": {
       "@reduxjs/toolkit": "^1.9.6",
+      "@tanstack/react-table": "^8.10.7",
       "formik": "^2.4.5",
       "moment": "^2.29.4",
       "nerdux-ui-system": "^0.2.2",
