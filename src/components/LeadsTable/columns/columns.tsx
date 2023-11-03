@@ -1,16 +1,18 @@
 ﻿import React from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
+import { HighlightText } from 'components/HighlightText/HighlightText';
 import { LeadDto } from 'data/leads/dto';
 import { formatDateForTable } from 'utils/formatDate/formatDate';
 
 const columnHelper = createColumnHelper<Partial<LeadDto>>();
-export const columns = [
+
+export const getColumns = (searchValue: string | null) => [
    columnHelper.accessor('name', {
-      cell: ({ getValue }) => <p>{getValue()}</p>,
+      cell: ({ getValue }) => <HighlightText text={getValue()} searchText={searchValue} />,
       header: () => 'Name',
    }),
    columnHelper.accessor('email', {
-      cell: ({ getValue }) => <p>{getValue()}</p>,
+      cell: ({ getValue }) => <HighlightText text={getValue()} searchText={searchValue} />,
       header: () => 'Email',
    }),
    columnHelper.accessor('consentsAccepted', {

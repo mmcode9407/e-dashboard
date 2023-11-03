@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
 * {
    box-sizing: border-box;
@@ -18,7 +18,7 @@
    --neutral-40: #605d62;
    --neutral-30: #484649;
    --neutral-20: #313033;
-   --neutral-10: #1C1B1F;
+   --neutral-10: #1c1b1f;
 }
 
 html {
