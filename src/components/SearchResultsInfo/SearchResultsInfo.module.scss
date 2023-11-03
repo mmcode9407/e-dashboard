@@ -1,0 +1,44 @@
+﻿.resultsCont {
+   display: flex;
+   align-items: center;
+
+   .resultsText {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--neutral-20);
+   }
+}
+
+.clearBtn {
+   padding: 10px 12px;
+   background: none;
+   border: none;
+   color: var(--magenta);
+   text-align: center;
+   font-size: 14px;
+   font-weight: 500;
+   line-height: 20px;
+   cursor: pointer;
+
+   &:hover {
+      text-decoration: underline;
+   }
+}
+
+.noResultsCont {
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   width: 100%;
+
+   .noResultsText {
+      padding: 30px 0 20px 0;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: var(--black);
+   }
+}

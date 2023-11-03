@@ -1,4 +1,4 @@
-﻿import React, { useMemo, useState } from 'react';
+﻿import React, { useEffect, useMemo, useState } from 'react';
 import {
    SortingState,
    flexRender,
@@ -18,9 +18,10 @@ import styles from './LeadsTable.module.scss';
 
 interface LeadsTableProps {
    searchValue: string | null;
+   setFoundLeads: (qty: number) => void;
 }
 
-export const LeadsTable = ({ searchValue }: LeadsTableProps) => {
+export const LeadsTable = ({ searchValue, setFoundLeads }: LeadsTableProps) => {
    const leads = useAppSelector(selectLeads);
    const [sorting, setSorting] = useState<SortingState>([]);
    const columns = useMemo(() => getColumns(searchValue), [searchValue]);
@@ -34,6 +35,10 @@ export const LeadsTable = ({ searchValue }: LeadsTableProps) => {
       getSortedRowModel: getSortedRowModel(),
       getFilteredRowModel: getFilteredRowModel(),
    });
+
+   useEffect(() => {
+      setFoundLeads(table.getFilteredRowModel().rows.length);
+   }, [searchValue]);
 
    return (
       <>
