@@ -6,8 +6,9 @@ import {
    getSortedRowModel,
    useReactTable,
    getFilteredRowModel,
+   getPaginationRowModel,
 } from '@tanstack/react-table';
-import { Table, TableBody, TableCell, TableHead, TableRow, TextField } from 'nerdux-ui-system';
+import { Pagination, Table, TableBody, TableCell, TableHead, TableRow } from 'nerdux-ui-system';
 
 import { DropdownIcon, DropupIcon } from 'components/Icons/Icons';
 import { selectLeads } from 'data/leads/slice';
@@ -29,15 +30,23 @@ export const LeadsTable = ({ searchValue, setFoundLeads }: LeadsTableProps) => {
    const table = useReactTable({
       data: leads,
       columns,
+      initialState: {
+         pagination: {
+            pageSize: 8,
+         },
+      },
       state: { sorting, globalFilter: searchValue },
       onSortingChange: setSorting,
       getCoreRowModel: getCoreRowModel(),
       getSortedRowModel: getSortedRowModel(),
       getFilteredRowModel: getFilteredRowModel(),
+      getPaginationRowModel: getPaginationRowModel(),
    });
 
+   const filteredRowsQTY: number = table.getFilteredRowModel().rows.length;
+
    useEffect(() => {
-      setFoundLeads(table.getFilteredRowModel().rows.length);
+      setFoundLeads(filteredRowsQTY);
    }, [searchValue]);
 
    return (
@@ -79,6 +88,13 @@ export const LeadsTable = ({ searchValue, setFoundLeads }: LeadsTableProps) => {
                ))}
             </TableBody>
          </Table>
+         {filteredRowsQTY !== 0 && (
+            <Pagination
+               maxPages={table.getPageCount()}
+               currentPage={table.getState().pagination.pageIndex + 1}
+               onChange={(e) => table.setPageIndex(e - 1)}
+            />
+         )}
       </>
    );
 };
