@@ -7,7 +7,6 @@ import {
    useReactTable,
    getFilteredRowModel,
    getPaginationRowModel,
-   PaginationState,
 } from '@tanstack/react-table';
 import { Pagination, Table, TableBody, TableCell, TableHead, TableRow } from 'nerdux-ui-system';
 
@@ -44,8 +43,10 @@ export const LeadsTable = ({ searchValue, setFoundLeads }: LeadsTableProps) => {
       getPaginationRowModel: getPaginationRowModel(),
    });
 
+   const filteredRowsQTY: number = table.getFilteredRowModel().rows.length;
+
    useEffect(() => {
-      setFoundLeads(table.getFilteredRowModel().rows.length);
+      setFoundLeads(filteredRowsQTY);
    }, [searchValue]);
 
    return (
@@ -87,12 +88,13 @@ export const LeadsTable = ({ searchValue, setFoundLeads }: LeadsTableProps) => {
                ))}
             </TableBody>
          </Table>
-
-         <Pagination
-            maxPages={table.getPageCount()}
-            currentPage={table.getState().pagination.pageIndex + 1}
-            onChange={(e) => table.setPageIndex(e - 1)}
-         />
+         {filteredRowsQTY !== 0 && (
+            <Pagination
+               maxPages={table.getPageCount()}
+               currentPage={table.getState().pagination.pageIndex + 1}
+               onChange={(e) => table.setPageIndex(e - 1)}
+            />
+         )}
       </>
    );
 };
