@@ -1,10 +1,10 @@
 import React from 'react';
 import { RequireAuth, useIsAuthenticated } from 'react-auth-kit';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Login } from './views/Login';
-import { Dashboard } from 'views/Dashboard';
-import { Leads } from 'views/Leads';
-import { Layout } from 'views/Layout';
+import { LoginPage } from './views/LoginPage/LoginPage';
+import { DashboardPage } from 'views/DashboardPage/DashboardPage';
+import { LeadsPage } from 'views/LeadsPage.tsx/LeadsPage';
+import { Layout } from 'views/Layout/Layout';
 import { Paths } from 'data/types/types';
 
 function App() {
@@ -15,14 +15,14 @@ function App() {
          <Route path={Paths.HOME} element={<Navigate to={Paths.LOGIN} />} />
          <Route
             path={Paths.LOGIN}
-            element={!isAuthenticated() ? <Login /> : <Navigate to={Paths.DASHBOARD} />}
+            element={!isAuthenticated() ? <LoginPage /> : <Navigate to={Paths.DASHBOARD} />}
          />
          <Route element={<Layout />}>
             <Route
                path={Paths.DASHBOARD}
                element={
                   <RequireAuth loginPath={Paths.LOGIN}>
-                     <Dashboard />
+                     <DashboardPage />
                   </RequireAuth>
                }
             />
@@ -30,7 +30,7 @@ function App() {
                path={Paths.LEADS}
                element={
                   <RequireAuth loginPath={Paths.LOGIN}>
-                     <Leads />
+                     <LeadsPage />
                   </RequireAuth>
                }
             />

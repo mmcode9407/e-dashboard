@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from 'react';
-import { Container } from '../components/Container/Container';
-import { LeadsList } from 'components/LeadsList/LeadsList';
-import { LeadsChart } from 'components/LeadsStats/LeadsChart';
-import { fetchUserLeads } from 'data/leads/slice';
+import { Container } from '../../components/Container/Container';
+import { Leads } from 'components/Leads/Leads';
+
 import { useAppDispatch } from 'store/hooks';
+import { fetchUserLeads } from 'data/leads/slice';
 
-import styles from './Dashboard.module.scss';
+import styles from './LeadsPage.module.scss';
 
-export const Dashboard = () => {
+export const LeadsPage = () => {
    const dispatch = useAppDispatch();
    const initialized = useRef(false);
 
@@ -26,11 +26,7 @@ export const Dashboard = () => {
    return (
       <Container>
          <div className={styles.wrapper}>
-            <h1 className={styles.title}>Dashboard</h1>
-            <div className={styles.contentBox}>
-               <LeadsList />
-               <LeadsChart />
-            </div>
+            <Leads />
          </div>
       </Container>
    );

@@ -4,8 +4,8 @@ import { BorderSide } from 'components/BorderSide/BorderSide';
 import { Container } from 'components/Container/Container';
 import { Nav } from 'components/Nav/Nav';
 
-import borderLeft from '../assets/images/borderLeft.svg';
-import borderRight from '../assets/images/borderRight.svg';
+import borderLeft from '../../assets/images/borderLeft.svg';
+import borderRight from '../../assets/images/borderRight.svg';
 
 import styles from './Layout.module.scss';
 

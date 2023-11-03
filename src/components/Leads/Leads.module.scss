@@ -1,9 +1,4 @@
-.wrapper {
-   width: 100%;
-   padding: 27px 0;
-}
-
-.leadsHeader {
+﻿.leadsHeader {
    display: flex;
    justify-content: space-between;
    align-items: flex-start;
@@ -32,7 +27,5 @@
 .contentBox {
    display: flex;
    justify-content: center;
-   flex-grow: 1;
-   gap: 24px;
    margin-top: 24px;
 }

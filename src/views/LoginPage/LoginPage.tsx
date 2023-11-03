@@ -1,14 +1,14 @@
 import React from 'react';
-import { Container } from '../components/Container/Container';
+import { Container } from '../../components/Container/Container';
 import { BorderSide } from 'components/BorderSide/BorderSide';
 import { LoginForm } from 'components/LoginForm/LoginForm';
 
-import borderLeft from '../assets/images/borderLeft.svg';
-import welcomeImg from '../assets/images/welcome.svg';
+import borderLeft from '../../assets/images/borderLeft.svg';
+import welcomeImg from '../../assets/images/welcome.svg';
 
-import styles from './Login.module.scss';
+import styles from './LoginPage.module.scss';
 
-export const Login = () => {
+export const LoginPage = () => {
    return (
       <main>
          <Container>
