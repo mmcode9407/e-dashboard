@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 
-import arrowLeft from '../../assets/icons/ArrowLeft.svg';
-import arrowRight from '../../assets/icons/ArrowRight.svg';
+import arrowLeft from '../../assets/icons/arrowLeft.svg';
+import arrowRight from '../../assets/icons/arrowRight.svg';
 
 import styles from './ArrowButton.module.scss';
 
