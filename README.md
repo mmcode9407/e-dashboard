@@ -4,6 +4,10 @@
 
 eDashboard is a professional lead management platform.
 
+### 🔴 Live
+
+Feel free to try the app live [here](https://e-dashboard-7hczzuixd-mmcode9407.vercel.app/)
+
 ---
 ### How to start 🚀
 
