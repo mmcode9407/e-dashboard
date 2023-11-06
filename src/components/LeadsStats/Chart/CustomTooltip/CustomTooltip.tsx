@@ -17,7 +17,7 @@ export const CustomTooltip = ({
          <div className={styles.tooltip}>
             <p className={styles.collected}>{payload[0].value}</p>
             <p className={styles.date}>{`${moment(label, 'Do MMM').format('dddd')},`}</p>
-            <p className={styles.date}>{`${label} ${moment().year()}`}</p>
+            <p className={styles.date}>{`${moment(label, 'Do MMM').format('Do MMMM YYYY')}`}</p>
          </div>
       );
    }

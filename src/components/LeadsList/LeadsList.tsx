@@ -14,6 +14,7 @@ export const LeadsList = () => {
    const handleLoadMore = () => {
       setDisplayedLeads(leads.length);
    };
+
    return (
       <div className={styles.leadsList}>
          <h2 className={styles.leadsListTitle}>
@@ -23,7 +24,7 @@ export const LeadsList = () => {
             {formattedLeads.length > 0 ? (
                formattedLeads
                   .slice(0, displayedLeads)
-                  .map((item) => <LeadsListItem key={item.name} {...item} />)
+                  .map((item) => <LeadsListItem key={item._id} {...item} />)
             ) : (
                <li className={styles.emptyList}>
                   <p className={styles.emptyListText}>No new leads...</p>
