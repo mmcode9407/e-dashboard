@@ -88,7 +88,7 @@ export const LeadsTable = ({ searchValue, setFoundLeads }: LeadsTableProps) => {
                ))}
             </TableBody>
          </Table>
-         {filteredRowsQTY !== 0 && (
+         {filteredRowsQTY > table.getState().pagination.pageSize && (
             <Pagination
                maxPages={table.getPageCount()}
                currentPage={table.getState().pagination.pageIndex + 1}
