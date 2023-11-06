@@ -1,4 +1,5 @@
 ﻿.leadsHeader {
+   position: relative;
    display: flex;
    justify-content: space-between;
    align-items: flex-start;
@@ -28,7 +29,8 @@
    display: flex;
    flex-direction: column;
    align-items: center;
-   justify-content: center;
+   justify-content: space-between;
+   flex-grow: 1;
    gap: 29px;
    margin-top: 24px;
 }

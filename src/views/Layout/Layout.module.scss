@@ -1,7 +1,13 @@
 ﻿.wrapper {
+   display: flex;
+   flex-direction: column;
    flex-grow: 1;
 }
 
-.innerWrapper {
-   padding: 0 156px;
+.contentWrapper {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   flex-grow: 1;
+   padding: 27px 156px;
 }

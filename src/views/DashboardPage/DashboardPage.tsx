@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import { Container } from '../../components/Container/Container';
 import { LeadsList } from 'components/LeadsList/LeadsList';
 import { LeadsChart } from 'components/LeadsStats/LeadsChart';
 import { fetchUserLeads } from 'data/leads/slice';
@@ -24,14 +23,14 @@ export const DashboardPage = () => {
    }, []);
 
    return (
-      <Container>
-         <div className={styles.wrapper}>
+      <>
+         <header>
             <h1 className={styles.title}>Dashboard</h1>
-            <div className={styles.contentBox}>
-               <LeadsList />
-               <LeadsChart />
-            </div>
+         </header>
+         <div className={styles.contentBox}>
+            <LeadsList />
+            <LeadsChart />
          </div>
-      </Container>
+      </>
    );
 };
