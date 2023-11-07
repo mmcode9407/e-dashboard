@@ -10,7 +10,7 @@ import {
 } from '@tanstack/react-table';
 import { Pagination, Table, TableBody, TableCell, TableHead, TableRow } from 'nerdux-ui-system';
 
-import { DropdownIcon, DropupIcon } from 'components/Icons/Icons';
+import { DropDefault, DropdownIcon, DropupIcon } from 'components/Icons/Icons';
 import { selectLeads } from 'data/leads/slice';
 import { useAppSelector } from 'store/hooks';
 import { getColumns } from './columns/columns';
@@ -68,7 +68,7 @@ export const LeadsTable = ({ searchValue, setFoundLeads }: LeadsTableProps) => {
                                  {{
                                     asc: <DropupIcon />,
                                     desc: <DropdownIcon />,
-                                 }[header.column.getIsSorted() as string] ?? null}
+                                 }[header.column.getIsSorted() as string] ?? <DropDefault />}
                               </div>
                            )}
                         </TableCell>
