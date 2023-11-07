@@ -28,8 +28,8 @@ export const LoginForm = () => {
    const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
       useFormik<IFormValues>({
          initialValues: {
-            email: 'dev@nerdbord.io',
-            password: 'catsanddogs',
+            email: '',
+            password: '',
          },
          validate: (values) => {
             return validateForm(values, loginInputs);
