@@ -7,8 +7,12 @@
       height: 56px;
    }
 
-   td {
-      align-items: center;
+   td:nth-child(1) {
+      flex-grow: 2;
+   }
+   
+   td:nth-child(2) {
+      flex-grow: 3;
    }
 }
 

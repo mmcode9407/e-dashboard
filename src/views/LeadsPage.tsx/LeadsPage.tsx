@@ -1,11 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { Container } from '../../components/Container/Container';
 import { Leads } from 'components/Leads/Leads';
 
 import { useAppDispatch } from 'store/hooks';
 import { fetchUserLeads } from 'data/leads/slice';
-
-import styles from './LeadsPage.module.scss';
 
 export const LeadsPage = () => {
    const dispatch = useAppDispatch();
@@ -23,11 +20,5 @@ export const LeadsPage = () => {
       }
    }, []);
 
-   return (
-      <Container>
-         <div className={styles.wrapper}>
-            <Leads />
-         </div>
-      </Container>
-   );
+   return <Leads />;
 };

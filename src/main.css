@@ -28,8 +28,17 @@ html {
 body {
    height: 100vh;
    width: 100vw;
+   background-color: var(--neutral-10);
 }
 
 ul {
    list-style-type: none;
+}
+
+button {
+   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+#root {
+   height: 100%;
 }

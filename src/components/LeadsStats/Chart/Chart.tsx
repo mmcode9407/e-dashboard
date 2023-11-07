@@ -9,8 +9,9 @@ import {
    Legend,
    Tooltip,
 } from 'recharts';
-import { CustomizedXAxisTick, CustomizedYAxisTick } from '../CustomizedAxisTick/CustomizedAxisTick';
-import { CustomTooltip } from '../CustomTooltip/CustomTooltip';
+import { CustomizedXAxisTick, CustomizedYAxisTick } from './CustomizedAxisTick/CustomizedAxisTick';
+import { CustomTooltip } from './CustomTooltip/CustomTooltip';
+import { CustomLegendText } from './CustomLegendText/CustomLegendText';
 import { IChartData } from 'utils/getChartData/getChartData';
 
 export const Chart = ({ chartData }: { chartData: IChartData[] }) => {
@@ -31,10 +32,10 @@ export const Chart = ({ chartData }: { chartData: IChartData[] }) => {
                dy={100}
                dataKey="name"
                tick={CustomizedXAxisTick}
+               interval={0}
                tickLine={false}
                padding={{ right: 20, left: 4 }}
                stroke="#484649"
-               includeHidden
             />
             <YAxis
                orientation="right"
@@ -45,7 +46,13 @@ export const Chart = ({ chartData }: { chartData: IChartData[] }) => {
                tick={CustomizedYAxisTick}
             />
             <CartesianGrid vertical={false} />
-            <Legend align="left" iconType="plainline" iconSize={30} />
+            <Legend
+               align="left"
+               iconType="plainline"
+               iconSize={30}
+               formatter={CustomLegendText}
+               wrapperStyle={{ bottom: 0, left: 0 }}
+            />
             <Tooltip content={<CustomTooltip />} />
          </AreaChart>
       </ResponsiveContainer>

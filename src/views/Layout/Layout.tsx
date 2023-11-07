@@ -15,7 +15,7 @@ export const Layout = () => {
          <BorderSide src={borderLeft} alt="Left border graphic" position="left" />
          <div className={styles.wrapper}>
             <Nav />
-            <div className={styles.innerWrapper}>
+            <div className={styles.contentWrapper}>
                <Outlet />
             </div>
          </div>

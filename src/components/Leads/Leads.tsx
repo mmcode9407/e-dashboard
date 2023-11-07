@@ -29,19 +29,18 @@ export const Leads = () => {
 
    return (
       <>
-         <div className={styles.leadsHeader}>
-            <div>
-               <h1 className={styles.title}>Collected Leads</h1>
-               {searchValue && (
-                  <SearchResultsInfo
-                     text="Displaying search results for"
-                     resultsQty={foundLeads}
-                     hasResults
-                     clearHandler={handleClear}
-                     searchValue={searchValue}
-                  />
-               )}
-            </div>
+         <header className={styles.leadsHeader}>
+            <h1 className={styles.title}>Collected Leads</h1>
+            {searchValue && (
+               <SearchResultsInfo
+                  text="Displaying search results for"
+                  resultsQty={foundLeads}
+                  hasResults
+                  clearHandler={handleClear}
+                  searchValue={searchValue}
+               />
+            )}
+
             <div className={styles.searchWrapper}>
                <TextField
                   withIcon
@@ -56,7 +55,7 @@ export const Leads = () => {
                   Search
                </Button>
             </div>
-         </div>
+         </header>
          <div className={styles.contentBox}>
             <LeadsTable searchValue={searchValue} setFoundLeads={setFoundLeads} />
          </div>
