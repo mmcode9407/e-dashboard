@@ -16,7 +16,7 @@ export const getColumns = (searchValue: string | null) => [
       header: () => 'Email',
    }),
    columnHelper.accessor('consentsAccepted', {
-      cell: ({ getValue }) => <p>{String(getValue())}</p>,
+      cell: ({ getValue }) => <p>{getValue() ? 'yes' : 'no'}</p>,
       header: () => 'Agreed',
    }),
    columnHelper.accessor('createdAt', {
