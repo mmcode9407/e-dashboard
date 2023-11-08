@@ -8,7 +8,7 @@ import {
    getFilteredRowModel,
    getPaginationRowModel,
 } from '@tanstack/react-table';
-import { Pagination, Table, TableBody, TableCell, TableHead, TableRow } from 'nerdux-ui-system';
+import { Pagination, Table, TableBody, TableHead, TableRow } from 'nerdux-ui-system';
 
 import { DropDefault, DropdownIcon, DropupIcon } from 'components/Icons/Icons';
 import { selectLeads } from 'data/leads/slice';
@@ -56,7 +56,7 @@ export const LeadsTable = ({ searchValue, setFoundLeads }: LeadsTableProps) => {
                {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow key={headerGroup.id}>
                      {headerGroup.headers.map((header) => (
-                        <TableCell key={header.id} align="center">
+                        <th key={header.id} className={styles.headCell}>
                            {header.isPlaceholder ? null : (
                               <div
                                  {...{
@@ -71,7 +71,7 @@ export const LeadsTable = ({ searchValue, setFoundLeads }: LeadsTableProps) => {
                                  }[header.column.getIsSorted() as string] ?? <DropDefault />}
                               </div>
                            )}
-                        </TableCell>
+                        </th>
                      ))}
                   </TableRow>
                ))}
@@ -80,9 +80,9 @@ export const LeadsTable = ({ searchValue, setFoundLeads }: LeadsTableProps) => {
                {table.getRowModel().rows.map((row) => (
                   <TableRow key={row.id}>
                      {row.getVisibleCells().map((cell) => (
-                        <TableCell key={cell.id} align="left">
+                        <td key={cell.id} className={styles.cell}>
                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                        </TableCell>
+                        </td>
                      ))}
                   </TableRow>
                ))}

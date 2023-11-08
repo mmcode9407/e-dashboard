@@ -16,13 +16,13 @@ export const getColumns = (searchValue: string | null) => [
       header: () => 'Email',
    }),
    columnHelper.accessor('consentsAccepted', {
-      cell: ({ getValue }) => <p>{getValue() ? 'yes' : 'no'}</p>,
+      cell: ({ getValue }) => (getValue() ? 'Yes' : 'No'),
       header: () => 'Agreed',
    }),
    columnHelper.accessor('createdAt', {
       cell: ({ getValue }) => {
          const value = getValue();
-         return value ? <p>{formatDateForTable(value)}</p> : <p></p>;
+         return value && formatDateForTable(value);
       },
       header: () => 'Date',
    }),
