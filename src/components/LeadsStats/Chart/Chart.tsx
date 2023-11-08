@@ -16,7 +16,7 @@ import { IChartData } from 'utils/getChartData/getChartData';
 
 export const Chart = ({ chartData }: { chartData: IChartData[] }) => {
    return (
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={350}>
          <AreaChart data={chartData} margin={{ top: 10, bottom: 20 }}>
             <Area
                type="linear"

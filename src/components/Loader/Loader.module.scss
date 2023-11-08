@@ -1,0 +1,17 @@
+﻿.iconSpinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    
+    & svg {
+        animation: spin 1.5s linear infinite;
+    }
+ }
+
+ @keyframes spin {
+    to {
+       transform: rotate(360deg);
+    }
+
+}

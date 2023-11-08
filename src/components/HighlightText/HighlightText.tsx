@@ -12,7 +12,7 @@ export const HighlightText = ({
    if (text && searchText) {
       const parts = text.split(new RegExp(`(${searchText})`, 'gi'));
       return (
-         <p>
+         <>
             {parts.map((part, index) =>
                part.toLowerCase() === searchText.toLowerCase() ? (
                   <span key={index} className={styles.highlighted}>
@@ -22,9 +22,9 @@ export const HighlightText = ({
                   part
                ),
             )}
-         </p>
+         </>
       );
    }
 
-   return <p>{text}</p>;
+   return <>{text}</>;
 };
