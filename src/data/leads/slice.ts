@@ -6,7 +6,12 @@ import { PURGE } from 'redux-persist';
 import { LeadDto } from './dto';
 import { getLeads } from 'api/service';
 
-const initialState: LeadDto[] = [];
+interface ILeadsSlice {
+   isLoading: boolean;
+   leads: LeadDto[];
+}
+
+const initialState: ILeadsSlice = { isLoading: false, leads: [] };
 
 export const fetchUserLeads = createAsyncThunk('leads/fetchUserLeads', async () => {
    const leads = await getLeads();
@@ -20,7 +25,11 @@ export const leadsSlice = createSlice({
    reducers: {},
    extraReducers: (builder) => {
       builder.addCase(fetchUserLeads.fulfilled, (state, action: PayloadAction<LeadDto[]>) => {
-         state.push(...action.payload);
+         state.leads.push(...action.payload);
+         state.isLoading = false;
+      });
+      builder.addCase(fetchUserLeads.pending, (state) => {
+         state.isLoading = true;
       });
       builder.addCase(fetchUserLeads.rejected, (state, action) => {
          throw new Error(action.error.message);
@@ -31,6 +40,7 @@ export const leadsSlice = createSlice({
    },
 });
 
-export const selectLeads = (state: RootState) => state.leads;
+export const selectLeads = (state: RootState) => state.leads.leads;
+export const selectState = (state: RootState) => state.leads.isLoading;
 
 export default leadsSlice.reducer;

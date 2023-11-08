@@ -2,14 +2,16 @@
 import { ArrowButton, Side } from 'components/ArrowButton/ArrowButton';
 import { Chart } from './Chart/Chart';
 import { useAppSelector } from 'store/hooks';
-import { selectLeads } from 'data/leads/slice';
+import { selectLeads, selectState } from 'data/leads/slice';
 import { getChartData } from 'utils/getChartData/getChartData';
 import moment from 'moment';
 
 import styles from './LeadsChart.module.scss';
+import { Loader } from 'components/Loader/Loader';
 
 export const LeadsChart = () => {
    const leads = useAppSelector(selectLeads);
+   const isLoading = useAppSelector(selectState);
    const [startDate, setStartDate] = useState(moment().subtract(0, 'days'));
    const chartData = getChartData(leads, startDate);
 
@@ -30,7 +32,7 @@ export const LeadsChart = () => {
                <ArrowButton side={Side.RIGHT} onClick={handleNext} />
             </div>
          </div>
-         <Chart chartData={chartData} />
+         {isLoading ? <Loader /> : <Chart chartData={chartData} />}
       </div>
    );
 };
