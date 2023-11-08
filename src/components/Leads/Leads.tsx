@@ -1,4 +1,4 @@
-﻿import React, { ChangeEvent, useState } from 'react';
+﻿import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { Button, TextField } from 'nerdux-ui-system';
 import { LeadsTable } from 'components/LeadsTable/LeadsTable';
 import { SearchResultsInfo } from 'components/SearchResultsInfo/SearchResultsInfo';
@@ -14,7 +14,8 @@ export const Leads = () => {
       setInputValue(e.target.value);
    };
 
-   const handleSearch = () => {
+   const handleSearch = (e: FormEvent) => {
+      e.preventDefault();
       setSearchValue(inputValue);
       setInputValue('');
    };
@@ -41,7 +42,7 @@ export const Leads = () => {
                />
             )}
 
-            <div className={styles.searchWrapper}>
+            <form onSubmit={handleSearch} className={styles.searchWrapper}>
                <TextField
                   withIcon
                   placeholder={'Search'}
@@ -51,10 +52,10 @@ export const Leads = () => {
                   onBlur={handleBlur}
                   value={inputValue}
                />
-               <Button onClick={handleSearch} variant={'primary'}>
+               <Button onClick={() => {}} type="submit" variant={'primary'}>
                   Search
                </Button>
-            </div>
+            </form>
          </header>
          <div className={styles.contentBox}>
             <LeadsTable searchValue={searchValue} setFoundLeads={setFoundLeads} />
