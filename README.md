@@ -8,6 +8,10 @@ eDashboard is a professional lead management platform.
 
 Feel free to try the app live [here](https://e-dashboard-steel.vercel.app/)
 
+Please use this credentials for logging:  
+email: `dev@nerdbord.io`,  
+password: `catsanddogs`
+
 ---
 ### How to start 🚀
 
